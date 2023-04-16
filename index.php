@@ -41,9 +41,6 @@ print_r($result);*/
         require_once "Controllers/usersController.php";
         ?>
     </main>
-    <footer>
-        <h1>Ce sera un footer</h1>
-    </footer>
 </body>
 
 </html>

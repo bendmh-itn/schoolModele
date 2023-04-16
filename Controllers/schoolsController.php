@@ -9,9 +9,12 @@ if ($uri === "/index.php" || $uri === "/") {
     $schools = selectAllSchools($dbh);
     require_once "Templates/Schools/pageAccueil.php";
 } elseif ($uri === "/createSchool") {
-    $optionsScolaire = selectAllOptions($dbh);
+    $options = selectAllOptions($dbh);
     require_once "Templates/Schools/editOrCreateSchool.php";
 } elseif ($uri === "/mesEcoles") {
     $schools = selectMySchools($dbh);
     require_once "Templates/Schools/pageAccueil.php";
+} elseif ($uri === "/voirEcole?schoolId=" . $_GET["schoolId"]) {
+    $school = selectOneSchool($dbh);
+    require_once "Templates/Schools/voirEcole.php";
 }

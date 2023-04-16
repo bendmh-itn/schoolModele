@@ -28,10 +28,11 @@
             <?php if (isset($messageError["numero_telephone"])) : ?><small><?= str_replace("_", " ", $messageError["numero_telephone"]) ?></small><?php endif ?>
         </div>
         <div class="mb-3">
-            <label for="options" class="form-label">Options de l'école</label>
-            <select name="options" id="options" multiple required>
-                <?php foreach ($optionsScolaire as $optionScolaire) : ?>
-                    <option value="<?= $optionScolaire->nom ?>"><?= $optionScolaire->nom ?></option>
+            <label for="pet-select">Choisis une option</label>
+
+            <select name="pets" id="pet-select" multiple required>
+                <?php foreach ($options as $option) : ?>
+                    <option value="<?= $option->optionScolaireId ?>"><?= $option->nom ?></option>
                 <?php endforeach ?>
             </select>
         </div>

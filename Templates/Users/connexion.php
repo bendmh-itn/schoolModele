@@ -11,7 +11,7 @@
             <input type="password" placeholder="Mot de passe" class="form-control" id="Password" name="mot_de_passe" value="">
         </div>
         <div>
-            <button name="btnEnvoi" class="btn btn-primary">Envoyer</button>
+            <button name="btnEnvoi" class="btn btn-primary" value="Envoyer">Envoyer</button>
         </div>
     </fieldset>
 </form>

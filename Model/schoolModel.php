@@ -30,6 +30,22 @@ function selectMySchools($dbh)
     }
 }
 
+function selectOneSchool($dbh)
+{
+    try {
+        $query = 'select * from school where schoolId = :schoolId';
+        $selectSchool = $dbh->prepare($query);
+        $selectSchool->execute([
+            'schoolId' => $_GET["schoolId"]
+        ]);
+        $school = $selectSchool->fetch();
+        return $school;
+    } catch (PDOException $e) {
+        $message = $e->getMessage();
+        die($message);
+    }
+}
+
 function deleteAllSchoolsFromUser($dbh)
 {
     try {

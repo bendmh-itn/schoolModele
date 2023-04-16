@@ -7,6 +7,7 @@
             <img src="<?= $school->schoolImage ?>" alt="Photo de l'école">
             <p><span><?= $school->schoolAdresse ?> - </span><span><?= $school->schoolVille ?></span></p>
             <p><?= $school->schoolNumero ?></p>
+            <p><a href="voirEcole?schoolId=<?= $school->schoolId ?>">Voir l'école</a></p>
         </div>
     <?php endforeach ?>
 </div>

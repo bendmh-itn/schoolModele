@@ -28,9 +28,9 @@
             <?php if (isset($messageError["numero_telephone"])) : ?><small><?= str_replace("_", " ", $messageError["numero_telephone"]) ?></small><?php endif ?>
         </div>
         <div class="mb-3">
-            <label for="pet-select">Choisis une option</label>
+            <label for="options-select">Choisis une option</label>
 
-            <select name="pets" id="pet-select" multiple required>
+            <select name="options[]" id="options-select" multiple>
                 <?php foreach ($options as $option) : ?>
                     <option value="<?= $option->optionScolaireId ?>"><?= $option->nom ?></option>
                 <?php endforeach ?>

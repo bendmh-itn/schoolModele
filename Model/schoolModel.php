@@ -46,6 +46,56 @@ function selectOneSchool($dbh)
     }
 }
 
+function selectOptionsSchool($dbh)
+{
+    try {
+        $query = 'select * from optionscolaire where optionScolaireId in (select optionScolaireId from option_ecole where schoolId = :schoolId);';
+        $selectOptions = $dbh->prepare($query);
+        $selectOptions->execute([
+            'schoolId' => $_GET["schoolId"]
+        ]);
+        $options = $selectOptions->fetchAll();
+        return $options;
+    } catch (PDOException $e) {
+        $message = $e->getMessage();
+        die($message);
+    }
+}
+
+function createSchool($dbh)
+{
+    try {
+        $query = 'insert into school (schoolNom, schoolAdresse, schoolVille, schoolCodePostal, schoolNumero, schoolImage, utilisateurId) values (:schoolNom, :schoolAdresse, :schoolVille, :schoolCodePostal, :schoolNumero, :schoolImage, :utilisateurId)';
+        $deleteAllSchoolsFromId = $dbh->prepare($query);
+        $deleteAllSchoolsFromId->execute([
+            'schoolNom' => $_POST["nom"],
+            'schoolAdresse' => $_POST["adresse"],
+            'schoolVille' => $_POST["ville"],
+            'schoolCodePostal' => $_POST["code_postal"],
+            'schoolNumero' => $_POST["numero_telephone"],
+            'schoolImage' => $_POST["image"],
+            'utilisateurId' => $_SESSION["user"]->id
+        ]);
+    } catch (PDOException $e) {
+        $message = $e->getMessage();
+        die($message);
+    }
+}
+
+function deleteOneSchool($dbh)
+{
+    try {
+        $query = 'delete from school where schoolId = :schoolId';
+        $deleteAllSchoolsFromId = $dbh->prepare($query);
+        $deleteAllSchoolsFromId->execute([
+            'schoolId' => $_GET["schoolId"]
+        ]);
+    } catch (PDOException $e) {
+        $message = $e->getMessage();
+        die($message);
+    }
+}
+
 function deleteAllSchoolsFromUser($dbh)
 {
     try {

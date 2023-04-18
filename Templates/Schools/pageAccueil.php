@@ -8,6 +8,9 @@
             <p><span><?= $school->schoolAdresse ?> - </span><span><?= $school->schoolVille ?></span></p>
             <p><?= $school->schoolNumero ?></p>
             <p><a href="voirEcole?schoolId=<?= $school->schoolId ?>">Voir l'école</a></p>
+            <?php if ($uri === "/mesEcoles") : ?>
+                <p><a href="deleteEcole?schoolId=<?= $school->schoolId ?>">Supprimer l'école</a></p>
+            <?php endif ?>
         </div>
     <?php endforeach ?>
 </div>

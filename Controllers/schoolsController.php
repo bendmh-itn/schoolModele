@@ -31,4 +31,32 @@ if ($uri === "/index.php" || $uri === "/") {
     deleteOptionSchool($dbh);
     deleteOneSchool($dbh);
     header("location:/mesEcoles");
+} elseif (isset($_GET["schoolId"]) && $uri === "/updateEcole?schoolId=" . $_GET["schoolId"]) {
+    if (isset($_POST['btnEnvoi'])) {
+        updateSchool($dbh);
+        deleteOptionSchool($dbh);
+        for ($i = 0; $i < count($_POST["options"]); $i++) {
+            $optionScolaireId = $_POST["options"][$i];
+            ajouterOptionsEcole($dbh, $_GET["schoolId"], $optionScolaireId);
+        }
+        header("location:/mesEcoles");
+    }
+    $school = selectOneSchool($dbh);
+    $optionsSchool = selectOptionsSchool($dbh);
+    $options = selectAllOptions($dbh);
+    require_once "Templates/Schools/editOrCreateSchool.php";
+}
+
+
+function phoneNumberFormatted($phoneNumber)
+{
+    $phoneNumberFormatted = str_replace("/", "", $phoneNumber);
+    $phoneNumberFormatted = str_replace(".", "", $phoneNumberFormatted);
+    $phoneNumberFormatted = str_replace(" ", "", $phoneNumberFormatted);
+    $part1 = substr($phoneNumberFormatted, -6, -4);
+    $part2 = substr($phoneNumberFormatted, -4, -2);
+    $part3 = substr($phoneNumberFormatted, -2);
+    $part4 = substr($phoneNumberFormatted, 0, -6);
+    $phoneNumberFormatted = $part4 . "/" . $part1 . "." . $part2 . "." . $part3;
+    return $phoneNumberFormatted;
 }

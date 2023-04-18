@@ -82,6 +82,26 @@ function createSchool($dbh)
     }
 }
 
+function updateSchool($dbh)
+{
+    try {
+        $query = 'update school set schoolNom = :schoolNom, schoolAdresse = :schoolAdresse, schoolVille = :schoolVille, schoolCodePostal = :schoolCodePostal, schoolNumero = :schoolNumero, schoolImage = :schoolImage where schoolId = :schoolId';
+        $deleteAllSchoolsFromId = $dbh->prepare($query);
+        $deleteAllSchoolsFromId->execute([
+            'schoolNom' => $_POST["nom"],
+            'schoolAdresse' => $_POST["adresse"],
+            'schoolVille' => $_POST["ville"],
+            'schoolCodePostal' => $_POST["code_postal"],
+            'schoolNumero' => $_POST["numero_telephone"],
+            'schoolImage' => $_POST["image"],
+            'schoolId' => $_GET["schoolId"]
+        ]);
+    } catch (PDOException $e) {
+        $message = $e->getMessage();
+        die($message);
+    }
+}
+
 function deleteOneSchool($dbh)
 {
     try {

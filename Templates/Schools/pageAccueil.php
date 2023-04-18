@@ -6,10 +6,11 @@
             <h2><?= $school->schoolNom ?></h2>
             <img src="<?= $school->schoolImage ?>" alt="Photo de l'école">
             <p><span><?= $school->schoolAdresse ?> - </span><span><?= $school->schoolVille ?></span></p>
-            <p><?= $school->schoolNumero ?></p>
+            <p><?= phoneNumberFormatted($school->schoolNumero) ?></p>
             <p><a href="voirEcole?schoolId=<?= $school->schoolId ?>">Voir l'école</a></p>
             <?php if ($uri === "/mesEcoles") : ?>
                 <p><a href="deleteEcole?schoolId=<?= $school->schoolId ?>">Supprimer l'école</a></p>
+                <p><a href="updateEcole?schoolId=<?= $school->schoolId ?>">Modifier l'école</a></p>
             <?php endif ?>
         </div>
     <?php endforeach ?>
